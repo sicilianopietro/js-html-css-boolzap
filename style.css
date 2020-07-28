@@ -1,0 +1,228 @@
+* {padding: 0; margin: 0; box-sizing: border-box;}
+html, body {height: 100%; width: 100%;}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #dddad1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ul {
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+::-webkit-scrollbar-track {
+  background: #efeff1;
+}
+.container {
+    height: 80%;
+    min-width: 1500px;
+    max-width: 1500px;
+    display: grid;
+    grid-template-columns: 420px auto;
+    grid-template-rows: 60px auto 60px;
+    grid-template-areas:
+                    "aside header "
+                    "aside main"
+                    "aside footer";
+}
+/* header */
+header {
+    padding: 10px;
+    grid-area: header;
+    background-color: #eaeaea;
+    display: flex;
+    align-items: center;
+}
+header img,
+aside img {
+    height: 40px;
+    width: 40px;
+}
+header .contact {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+}
+header .contact span:nth-of-type(1),
+aside .notice .text span:nth-of-type(1),
+aside .chat .contact .text .name span:nth-of-type(1){
+    font-weight: bold;
+}
+header .contact span:nth-of-type(2),
+aside .notice .text span:nth-of-type(2),
+aside .chat .contact .text .name span:nth-of-type(2),
+aside .chat .contact .text>span{
+    color: #808689;
+}
+header ul {
+    display: flex;
+}
+header ul li,
+aside .top ul li,
+footer i {
+    font-size: 22px;
+    color: #abada7;
+    padding: 0 8px;
+}
+
+/* aside */
+aside {
+    height: 1030px;
+    grid-area: aside;
+    display: flex;
+    flex-direction: column;
+}
+aside .top {
+    padding: 10px;
+    height: 60px;
+    border-right: 1px solid #d6d6d6;
+    background-color: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+aside .top ul {
+    display: flex;
+}
+aside .notice {
+    padding: 10px;
+    height: 70px;
+    background-color: #8edafc;
+    display: flex;
+    align-items: center;
+}
+aside .notice .text {
+    margin-left: 15px;
+}
+aside .notice .icon {
+    height: 45px;
+    width: 45px;
+    border-radius: 25px;
+    color: #8edafc;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+aside .searchbar {
+    padding: 10px;
+    height: 50px;
+    background-color: #f9f9f7;
+    display: flex;
+    align-items: center;
+}
+aside .searchbar .search{
+    height: 30px;
+    width: 30px;
+    color: #abada7;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+aside .searchbar input {
+    height: 30px;
+    width: 100%;
+    border: none;
+}
+aside .searchbar input:focus {
+    outline: none;
+}
+aside .chat{
+    background-color: #fff;
+    flex: 1;
+    overflow-y: auto;
+}
+aside .chat .contact{
+    height: 80px;
+    padding: 10px;
+    border-bottom: 1px solid #e9ebea;
+    background-color: #fff;
+    display: flex;
+    align-items: flex-end;
+}
+aside .chat .contact .text {
+    margin-left: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+aside .chat .contact .text .name {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* main */
+main {
+    height: auto;
+    padding: 50px;
+    grid-area: main;
+    background-color: #e5ddd5;
+    position: relative;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    /* background: url('https://web.whatsapp.com/img/bg-chat-tile-light_9e8a2898faedb7db9bf5638405cf81ae.png'); */
+}
+main::before {
+    background: url('https://web.whatsapp.com/img/bg-chat-tile-light_9e8a2898faedb7db9bf5638405cf81ae.png');
+    background-attachment: fixed;
+    opacity: 0.1;
+    content: '';
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+main>div{
+    z-index: 1;
+}
+main .in .text,
+main .out .text {
+    margin-bottom: 10px;
+}
+main .in .text p {
+    max-width: 50%;
+    display: inline-block;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+main .out{
+    align-self: flex-end;
+}
+main .out .text p{
+    padding: 10px;
+    background-color: #d5f9bb;
+    border-radius: 10px;
+}
+
+/* footer */
+footer {
+    grid-area: footer;
+    background-color: #f3eeea;
+    display: flex;
+    align-items: center;
+}
+footer>div{
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer input {
+    border-radius: 50px;
+    padding: 20px;
+    flex: 1;
+    height: 45px;
+    border: none;
+}
+footer input:focus{
+    outline: none;
+}
