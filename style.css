@@ -167,9 +167,9 @@ main {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    /* background: url('https://web.whatsapp.com/img/bg-chat-tile-light_9e8a2898faedb7db9bf5638405cf81ae.png'); */
+    background: url('image/mine.jpg');
 }
-main::before {
+/* main::before {
     background: url('https://web.whatsapp.com/img/bg-chat-tile-light_9e8a2898faedb7db9bf5638405cf81ae.png');
     background-attachment: fixed;
     opacity: 0.1;
@@ -179,28 +179,43 @@ main::before {
     bottom: 0;
     right: 0;
     position: absolute;
-}
-main>div{
-    z-index: 1;
-}
+} */
 main .in .text,
-main .out .text {
+main .template .out .text {
+    max-width: 50%;
+    margin-bottom: 10px;
+}
+main>div {
     margin-bottom: 10px;
 }
 main .in .text p {
-    max-width: 50%;
     display: inline-block;
-    padding: 10px;
+    padding: 10px 15px 0;
     background-color: #fff;
     border-radius: 10px;
 }
-main .out{
-    align-self: flex-end;
+main .in .text p::after,
+main .out .text p::after {
+    content: "05:05";
+    display: block;
+    font-size: 10px;
+    text-align: right;
+    color: #808689;
 }
-main .out .text p{
-    padding: 10px;
+main .out {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+main .out .text p {
+    max-width: 400px;
+    display: inline-block;
+    padding: 10px 15px 0;
     background-color: #d5f9bb;
     border-radius: 10px;
+}
+main .template {
+    display:none;
 }
 
 /* footer */
