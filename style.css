@@ -241,3 +241,6 @@ footer input {
 footer input:focus{
     outline: none;
 }
+footer .speak {
+    cursor: pointer;
+}
