@@ -4,7 +4,7 @@ $(document).ready(function() {
         var valore = $("footer input").val();
         $("footer input").val("");
         var copia = $(".template .out").clone();
-        copia.find(".text").append("<p>"+valore+"</p>")
+        copia.find(".text").append("<p>"+valore+"</p>");
         $("main").append(copia);
         setTimeout(reply, 1000);
     })
@@ -20,12 +20,15 @@ $(document).ready(function() {
         $("footer .speak i:nth-of-type(2)").hide();
     })
 
+    $("aside .chat .text .name").append("<span>" + orario() + "</span>");
+    $("header .contact").find("span:nth-of-type(2)").append(orario());
+
     function aggiungi(){
         if(event.which == 13){
             var valore = $("footer input").val();
             $("footer input").val("");
             var copia = $(".template .out").clone();
-            copia.find(".text").append("<p>"+valore+"</p>")
+            copia.find(".text").append("<p>"+valore+"</p>");
             $("main").append(copia);
 
             setTimeout(reply, 1000)
@@ -41,7 +44,7 @@ $(document).ready(function() {
         ]
 
         var answer = $(".template .in").clone();
-        answer.find(".text").append("<p>"+ answerArr[numRand(0,2)] +"</p>")
+        answer.find(".text").append("<p>"+ answerArr[numRand(0,2)] +"</p>");
         $("main").append(answer);
     }
 
@@ -49,8 +52,16 @@ $(document).ready(function() {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
     }
 
-    var data = new Date();
-    var ora = data.getHours() + ":" + data.getMinutes();
-    console.log(ora);
+    function addZero(i) {
+        if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+    }
 
+    function orario(){
+        var data = new Date();
+        var ora = data.getHours() + ":" + addZero(data.getMinutes());
+        return ora;
+    }
 });
