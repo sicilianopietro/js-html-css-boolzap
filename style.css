@@ -139,12 +139,16 @@ aside .chat{
     overflow-y: auto;
 }
 aside .chat .contact{
+    cursor: pointer;
     height: 80px;
     padding: 10px;
     border-bottom: 1px solid #e9ebea;
     background-color: #fff;
     display: flex;
     align-items: flex-end;
+}
+aside .chat .contact.active{
+    background-color: #d6d6d6;
 }
 aside .chat .contact .text {
     margin-left: 15px;
@@ -180,15 +184,19 @@ main {
     right: 0;
     position: absolute;
 } */
-main .in .text,
-main .template .out .text {
-    max-width: 50%;
-    margin-bottom: 10px;
+main .main-chat {
+    display: none;
 }
-main>div {
+main .main-chat.active{
+    display: block;
+}
+main .template .in .text,
+main .template .out .text {
     margin-bottom: 10px;
 }
 main .in .text p {
+    max-width: 400px;
+    word-wrap: break-word;
     display: inline-block;
     padding: 10px 15px 0;
     background-color: #fff;
@@ -208,6 +216,7 @@ main .out {
     align-items: flex-end;
 }
 main .out .text p {
+    word-wrap: break-word;
     max-width: 400px;
     display: inline-block;
     padding: 10px 15px 0;
