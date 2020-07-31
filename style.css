@@ -17,6 +17,7 @@ a{
   background: #efeff1;
 }
 .container {
+    position: relative;
     height: 80%;
     min-width: 1500px;
     max-width: 1500px;
@@ -29,11 +30,30 @@ a{
                     "aside footer";
 }
 /* header */
+.start {
+    position: absolute;
+    left: 420px;
+    right: 0;
+    top: 0;
+    bottom:0;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.start.hidden{
+    display:none;
+}
+header.active,
+main.active,
+footer.active {
+    display: flex;
+}
 header {
     padding: 10px;
     grid-area: header;
     background-color: #eaeaea;
-    display: flex;
+    display: none;
     align-items: center;
 }
 header img,
@@ -47,6 +67,9 @@ header .contact {
     flex-direction: column;
     justify-content: center;
     margin-left: 15px;
+}
+header .contact span:nth-of-type(2){
+    display: none;
 }
 header .contact span:nth-of-type(1),
 aside .notice .text span:nth-of-type(1),
@@ -72,6 +95,7 @@ footer i {
 
 /* aside */
 aside {
+    border-right: 1px solid #d6d6d6;
     height: 1030px;
     grid-area: aside;
     display: flex;
@@ -80,7 +104,7 @@ aside {
 aside .top {
     padding: 10px;
     height: 60px;
-    border-right: 1px solid #d6d6d6;
+    /* border-right: 1px solid #d6d6d6; */
     background-color: #eaeaea;
     display: flex;
     align-items: center;
@@ -169,7 +193,7 @@ main {
     background-color: #e5ddd5;
     position: relative;
     overflow-y: auto;
-    display: flex;
+    display: none;
     flex-direction: column;
     background: url('image/mine.jpg');
 }
@@ -231,7 +255,7 @@ main .template {
 footer {
     grid-area: footer;
     background-color: #f3eeea;
-    display: flex;
+    display: none;
     align-items: center;
 }
 footer>div{

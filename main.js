@@ -22,16 +22,26 @@ $(document).ready(function() {
         $("footer .speak i:nth-of-type(2)").hide();
     })
 
-    $("aside .chat .text .name span:nth-of-type(2)").append(orario());
+    $("aside .chat .contact .text .name span:nth-of-type(2)").append(orario());
 
     $("header .contact span:nth-of-type(2)").append(orario());
 
     $("aside .chat .contact").click(function(){
+        $(this).addClass("active");
         var index = $(this).index();
         $("main .main-chat").removeClass("active");
         $("aside .chat .contact").removeClass("active");
         $(this).addClass("active");
         $("main .main-chat").eq(index).addClass("active");
+        var name = $("aside .chat .contact.active .text .name span:nth-of-type(1)").text()
+        $("header .contact span:nth-of-type(1)").text(name);
+        var avatar = $("aside .chat .contact.active .icon img").attr("src");
+        $("header img").attr("src", avatar);
+        $("header .contact span:nth-of-type(2)").show();
+        $("main").addClass("active");
+        $("header").addClass("active");
+        $("footer").addClass("active");
+        $(".start").addClass("hidden");
     })
 
     function aggiungi(){
@@ -40,7 +50,7 @@ $(document).ready(function() {
         var copia = $(".template .out").clone();
         copia.find(".text p").append(valore);
         $("main .main-chat.active").append(copia);
-        $("main .out .text").find("p").attr("data-descr", orario());
+        $("main .out .text").find("p").attr("data-descr", orario());        
         scrollChat();
     }
 
