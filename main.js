@@ -1,18 +1,16 @@
 $(document).ready(function() {
 
     $(".speak").click(function(){
-        var valore = $("footer input").val();
-        $("footer input").val("");
-        var copia = $(".template .out").clone();
-        copia.find(".text").append("<p>"+valore+"</p>");
-        // copia.find("p").append(valore);
-        $("main .main-chat.active").append(copia);
-        $("main .out .text").find("p").attr("data-descr", orario());
-        scrollChat();
+        aggiungi();
         setTimeout(reply, 1000);
     })
 
-    $("footer input").keydown(aggiungi);
+    $("footer input").keydown(function(){
+        if(event.which == 13){
+            aggiungi();
+            setTimeout(reply, 1000);
+        }
+    });
 
     $("footer input").focus(function(){
         $("footer .speak i:nth-of-type(1)").hide();
@@ -24,9 +22,9 @@ $(document).ready(function() {
         $("footer .speak i:nth-of-type(2)").hide();
     })
 
-    $("aside .chat .text .name").append("<span>" + orario() + "</span>");
+    $("aside .chat .text .name span:nth-of-type(2)").append(orario());
 
-    $("header .contact").find("span:nth-of-type(2)").append(orario());
+    $("header .contact span:nth-of-type(2)").append(orario());
 
     $("aside .chat .contact").click(function(){
         var index = $(this).index();
@@ -37,22 +35,17 @@ $(document).ready(function() {
     })
 
     function aggiungi(){
-        if(event.which == 13){
-            var valore = $("footer input").val();
-            $("footer input").val("");
-            var copia = $(".template .out").clone();
-            copia.find(".text").append("<p>"+valore+"</p>");
-            // copia.find("p").append(valore);
-            $("main .main-chat.active").append(copia);
-            $("main .out .text").find("p").attr("data-descr", orario());
-            scrollChat();
-            setTimeout(reply, 1000);
-        };
+        var valore = $("footer input").val();
+        $("footer input").val("");
+        var copia = $(".template .out").clone();
+        copia.find(".text p").append(valore);
+        $("main .main-chat.active").append(copia);
+        $("main .out .text").find("p").attr("data-descr", orario());
+        scrollChat();
     }
 
     function scrollChat(){
-        $('main').animate({
-            scrollTop: $('main')[0].scrollHeight});
+        $('main').animate({scrollTop: $('main')[0].scrollHeight},0);
     }
 
     function reply(){
@@ -72,19 +65,20 @@ $(document).ready(function() {
     }
 
     function numRand(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
-    }
-
-    function addZero(i) {
-        if (i < 10) {
-        i = "0" + i;
-    }
-    return i;
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
     }
 
     function orario(){
+
+        function addZero(i) {
+            if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+        }
+
         var data = new Date();
-        var ora = data.getHours() + ":" + addZero(data.getMinutes());
+        var ora = addZero(data.getHours()) + ":" + addZero(data.getMinutes());
         return ora;
     }
 });
