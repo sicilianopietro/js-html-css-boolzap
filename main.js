@@ -44,13 +44,39 @@ $(document).ready(function() {
         $(".start").addClass("hidden");
     })
 
+    $("aside .searchbar input").keyup(function(){
+
+        // var search = $(this).val().toLowerCase();
+        // var contact = $("aside .chat .contact");
+        //
+        // for (var i = 0; i < contact.length; i++){
+        //     var a = contact.eq(i).find(".text .name span:nth-of-type(1)");
+        //     console.log(a.html());
+        //     if(a.html().toLowerCase().indexOf(search) > -1) {
+        //         contact.eq(i).show()
+        //     } else {
+        //         contact.eq(i).hide()
+        //     }
+        // }
+
+        var search = $(this).val().toLowerCase();
+        $("aside .chat .contact").each(function(){
+            var that = $(this);            
+            if ($(this).find(".name span:nth-of-type(1)").text().toLowerCase().includes(search)){
+                that.show();
+            }else {
+                that.hide();
+            }
+        })
+    })
+
     function aggiungi(){
         var valore = $("footer input").val();
         $("footer input").val("");
         var copia = $(".template .out").clone();
         copia.find(".text p").append(valore);
         $("main .main-chat.active").append(copia);
-        $("main .out .text").find("p").attr("data-descr", orario());        
+        $("main .out .text").find("p").attr("data-descr", orario());
         scrollChat();
     }
 

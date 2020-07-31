@@ -38,6 +38,7 @@ a{
     bottom:0;
     background-color: #f8f9fa;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
