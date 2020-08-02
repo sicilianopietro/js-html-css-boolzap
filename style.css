@@ -59,6 +59,7 @@ header {
 }
 header img,
 aside img {
+    border-radius: 50%;
     height: 40px;
     width: 40px;
 }
@@ -105,7 +106,6 @@ aside {
 aside .top {
     padding: 10px;
     height: 60px;
-    /* border-right: 1px solid #d6d6d6; */
     background-color: #eaeaea;
     display: flex;
     align-items: center;
@@ -141,7 +141,7 @@ aside .searchbar {
     display: flex;
     align-items: center;
 }
-aside .searchbar .search{
+aside .searchbar .search {
     height: 30px;
     width: 30px;
     color: #abada7;
@@ -158,12 +158,14 @@ aside .searchbar input {
 aside .searchbar input:focus {
     outline: none;
 }
-aside .chat{
+aside .chat {
     background-color: #fff;
     flex: 1;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
-aside .chat .contact{
+aside .chat .contact {
     cursor: pointer;
     height: 80px;
     padding: 10px;
@@ -171,9 +173,11 @@ aside .chat .contact{
     background-color: #fff;
     display: flex;
     align-items: flex-end;
+    /* order: 1; */
 }
 aside .chat .contact.active{
     background-color: #d6d6d6;
+    /* order: 0; */
 }
 aside .chat .contact .text {
     margin-left: 15px;

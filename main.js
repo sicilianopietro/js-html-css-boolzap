@@ -1,17 +1,22 @@
 $(document).ready(function() {
 
+    // INVIO MESSAGGI CON IL CLICK
     $(".speak").click(function(){
-        aggiungi();
-        setTimeout(reply, 1000);
+        if($("footer input").val().length > 0 && !($("footer input").val() == 0)){
+            aggiungi();
+            setTimeout(reply, 1000);
+        }
     })
 
+    //  INVIO MESSAGGI CON IL TASTO INVIA
     $("footer input").keydown(function(){
-        if(event.which == 13){
+        if(event.which == 13 && $(this).val().length > 0 && !($(this).val() == 0)){
             aggiungi();
             setTimeout(reply, 1000);
         }
     });
 
+    // CAMBIO DI ICONE PER L'INVIO DEI MESSAGGI
     $("footer input").focus(function(){
         $("footer .speak i:nth-of-type(1)").hide();
         $("footer .speak i:nth-of-type(2)").show();
@@ -22,31 +27,32 @@ $(document).ready(function() {
         $("footer .speak i:nth-of-type(2)").hide();
     })
 
-    $("aside .chat .contact .text .name span:nth-of-type(2)").append(orario());
+    // AGGIUNGERE ORARIO
+    $("aside .chat .contact .text .name span:nth-of-type(2)").append(getTime());
+    $("header .contact span:nth-of-type(2)").append(getTime());
 
-    $("header .contact span:nth-of-type(2)").append(orario());
-
+    // SELEZIONARE LA CHAT
     $("aside .chat .contact").click(function(){
-        $(this).addClass("active");
-        var index = $(this).index();
+
         $("main .main-chat").removeClass("active");
         $("aside .chat .contact").removeClass("active");
         $(this).addClass("active");
-        $("main .main-chat").eq(index).addClass("active");
-        var name = $("aside .chat .contact.active .text .name span:nth-of-type(1)").text()
-        $("header .contact span:nth-of-type(1)").text(name);
-        var avatar = $("aside .chat .contact.active .icon img").attr("src");
-        $("header img").attr("src", avatar);
+        $("main .main-chat").eq($(this).index()).addClass("active");
+
+        $("header .contact span:nth-of-type(1)").text($("aside .chat .contact.active .text .name span:nth-of-type(1)").text());
+        $("header img").attr("src",$("aside .chat .contact.active .icon img").attr("src"));
         $("header .contact span:nth-of-type(2)").show();
-        $("main").addClass("active");
-        $("header").addClass("active");
-        $("footer").addClass("active");
-        $(".start").addClass("hidden");
+
+        scrollChat()
+        startChat();
     })
 
+    // RICERCA DEI CONTATTI
     $("aside .searchbar input").keyup(function(){
 
-        // var search = $(this).val().toLowerCase();
+        var search = $(this).val().toLowerCase();
+
+        // SEARCH CICLO FOR
         // var contact = $("aside .chat .contact");
         //
         // for (var i = 0; i < contact.length; i++){
@@ -59,9 +65,9 @@ $(document).ready(function() {
         //     }
         // }
 
-        var search = $(this).val().toLowerCase();
+        // SEARCH EACH()
         $("aside .chat .contact").each(function(){
-            var that = $(this);            
+            var that = $(this);
             if ($(this).find(".name span:nth-of-type(1)").text().toLowerCase().includes(search)){
                 that.show();
             }else {
@@ -70,18 +76,21 @@ $(document).ready(function() {
         })
     })
 
+    function startChat(){
+        $("main").addClass("active");
+        $("header").addClass("active");
+        $("footer").addClass("active");
+        $(".start").addClass("hidden");
+    }
+
     function aggiungi(){
         var valore = $("footer input").val();
         $("footer input").val("");
         var copia = $(".template .out").clone();
-        copia.find(".text p").append(valore);
+        copia.find(".text p").append(valore.trim());
         $("main .main-chat.active").append(copia);
-        $("main .out .text").find("p").attr("data-descr", orario());
+        $("main .out .text").find("p").attr("data-descr", getTime());
         scrollChat();
-    }
-
-    function scrollChat(){
-        $('main').animate({scrollTop: $('main')[0].scrollHeight},0);
     }
 
     function reply(){
@@ -94,27 +103,23 @@ $(document).ready(function() {
         ]
 
         var answer = $(".template .in").clone();
-        answer.find(".text").append("<p>"+ answerArr[numRand(0,3)] +"</p>");
+        answer.find(".text p").append(answerArr[numRand(0,3)]);
         $("main .main-chat.active").append(answer);
-        $("main .in .text").find("p").attr("data-descr", orario());
+        $("main .in .text").find("p").attr("data-descr", getTime());
         scrollChat();
+    }
+
+    function scrollChat(){
+        $('main').animate({scrollTop: $('main')[0].scrollHeight},0);
     }
 
     function numRand(min, max) {
         return Math.floor(Math.random() * (max - min + 1) ) + min;
     }
 
-    function orario(){
-
-        function addZero(i) {
-            if (i < 10) {
-            i = "0" + i;
-        }
-        return i;
-        }
-
-        var data = new Date();
-        var ora = addZero(data.getHours()) + ":" + addZero(data.getMinutes());
-        return ora;
+    function getTime(){
+        var time = new Date();
+        time = `${time.getHours()}:${time.getMinutes() < 10 ? "0" : ""}${time.getMinutes()}`;
+        return time;
     }
 });
