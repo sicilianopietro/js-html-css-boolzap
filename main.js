@@ -90,6 +90,10 @@ $(document).ready(function() {
         copia.find(".text p").append(valore.trim());
         $("main .main-chat.active").append(copia);
         $("main .out .text").find("p").attr("data-descr", getTime());
+        $("aside .chat .contact.active .text .name").find("span:nth-of-type(2)").text(getTime());
+
+        $("aside .chat .contact.active .text .message").find("span").text($("main .main-chat.active .out:last-of-type .text p").text())
+
         scrollChat();
     }
 
@@ -99,13 +103,19 @@ $(document).ready(function() {
             "ciao",
             "come stai",
             "a presto",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
         ]
 
         var answer = $(".template .in").clone();
         answer.find(".text p").append(answerArr[numRand(0,3)]);
         $("main .main-chat.active").append(answer);
         $("main .in .text").find("p").attr("data-descr", getTime());
+
+        $("header .contact").find("span:nth-of-type(2)").text("Ultimo accesso oggi alle ore " + getTime());
+        $("aside .chat .contact.active .text .name").find("span:nth-of-type(2)").text(getTime());
+
+        $("aside .chat .contact.active .text .message").find("span").text($("main .main-chat.active .in:last-of-type .text p").text())
+
         scrollChat();
     }
 

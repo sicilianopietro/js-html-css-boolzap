@@ -35,7 +35,7 @@ a{
     left: 420px;
     right: 0;
     top: 0;
-    bottom:0;
+    bottom: -2px;
     background-color: #f8f9fa;
     display: flex;
     flex-direction: column;
@@ -60,8 +60,8 @@ header {
 header img,
 aside img {
     border-radius: 50%;
-    height: 40px;
-    width: 40px;
+    height: 60px;
+    width: 60px;
 }
 header .contact {
     flex: 1;
@@ -70,18 +70,18 @@ header .contact {
     justify-content: center;
     margin-left: 15px;
 }
-header .contact span:nth-of-type(2){
+header .contact span:nth-of-type(2) {
     display: none;
 }
 header .contact span:nth-of-type(1),
 aside .notice .text span:nth-of-type(1),
-aside .chat .contact .text .name span:nth-of-type(1){
+aside .chat .contact .text .name span:nth-of-type(1) {
     font-weight: bold;
 }
 header .contact span:nth-of-type(2),
 aside .notice .text span:nth-of-type(2),
 aside .chat .contact .text .name span:nth-of-type(2),
-aside .chat .contact .text>span{
+aside .chat .contact .text .message {
     color: #808689;
 }
 header ul {
@@ -172,7 +172,6 @@ aside .chat .contact {
     border-bottom: 1px solid #e9ebea;
     background-color: #fff;
     display: flex;
-    align-items: flex-end;
     /* order: 1; */
 }
 aside .chat .contact.active{
@@ -180,14 +179,22 @@ aside .chat .contact.active{
     /* order: 0; */
 }
 aside .chat .contact .text {
+    padding: 5px;
     margin-left: 15px;
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 aside .chat .contact .text .name {
     display: flex;
     justify-content: space-between;
+}
+aside .chat .contact .text .message{
+    width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* main */
